@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sysmon - Powered by Node.JS</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="app_runner.js"></script>
+    <style type="text/css">
+      #lavg span:after { content:", "; }
+      #lavg span { padding-right:2px; }
+      body.dark { font-family:courier; background:#222; color:#f9f9f9; }
+      body.dark .ps-pnm { font-size:105%; }
+    </style>
+  </head>
+  <body class="dark">
+    <div class="monitors">
+      <div id="load">
+        Load Average: 
+        <span id="lavg"></span>
+      </div>
+      <br />
+      <div id="uptime"></div>
+      <br />
+      <div id="proc-warp">
+        <table id="processes">
+          <thead><tr>
+            <th>pname</th><th>%cpu</th>
+            <th>%mem</th><th>pid</th><th>usr</th>
+          </tr></thead>
+          <tbody class="proc_list">
+          </tbody>
+        </table>
+      </div>
+      <br />
+      <div id="proc-num"></div>
+    </div>
+  </body>
+</html>
