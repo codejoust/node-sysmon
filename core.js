@@ -6,7 +6,8 @@ var sys = require('sys'),
     exec = require('child_process').exec;
     
 var uptime = function(callback){
-    fs.readFile('/proc/uptime', "r",  function(err, data){
+    //fs.readFile('/proc/uptime', "r",  function(err, data){ // Broken, currently.
+    var ps = exec('cat /proc/uptime', function(err, data, stderr){    
         var upsec = parseInt(data.split(/ /)[0]);
         var t = {}, u = {};
         t.tsec = upsec;
@@ -18,10 +19,12 @@ var uptime = function(callback){
         callback(t);
     });
 }, load = function(callback){
-    fs.readFile('/proc/loadavg', "r", function(err, data){
-        data = data.split(' ');
+    //fs.readFile('/proc/loadavg', "r", function(err, data){ // Broken, currently.
+    var ps = exec('cat /proc/loadavg', function(err, data, stderr){    
+        if (err) return false;
+        data = (data + '').split(' ');
         var proc = data.slice(0, 3);
-        var ad = data[3].split('/');
+        var ad = data[4].split('/');
         var amt = {
             running: ad[0],
             total: ad[1]
